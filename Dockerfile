@@ -10,6 +10,7 @@ RUN pacman -Syu --noconfirm && \
         curl \
         gifsicle \
         python \
+        python-pip \
         exiv2
 
 COPY --from=source /moe-sticker-bot /moe-sticker-bot
@@ -17,6 +18,8 @@ COPY --from=source /moe-sticker-bot /moe-sticker-bot
 ADD https://raw.githubusercontent.com/star-39/moe-sticker-bot/master/tools/msb_emoji.py /usr/local/bin/msb_emoji.py
 ADD https://raw.githubusercontent.com/star-39/moe-sticker-bot/master/tools/msb_kakao_decrypt.py /usr/local/bin/msb_kakao_decrypt.py
 ADD https://raw.githubusercontent.com/star-39/moe-sticker-bot/master/tools/msb_rlottie.py /usr/local/bin/msb_rlottie.py
+
+RUN pip install --break-system-packages emoji rlottie-python
 
 RUN chmod +x /usr/local/bin/msb_*.py
 
