@@ -1,3 +1,5 @@
+FROM ghcr.io/star-39/moe-sticker-bot:latest AS source
+
 FROM archlinux:latest
 
 RUN pacman -Syu --noconfirm && \
@@ -10,7 +12,6 @@ RUN pacman -Syu --noconfirm && \
         python \
         exiv2
 
-COPY --from=ghcr.io/star-39/moe-sticker-bot /moe-sticker-bot /moe-sticker-bot
-COPY --from=ghcr.io/star-39/moe-sticker-bot /app/tools /app/tools
+COPY --from=source /moe-sticker-bot /moe-sticker-bot
 
 CMD ["/moe-sticker-bot"]
